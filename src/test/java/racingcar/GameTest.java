@@ -62,6 +62,37 @@ class GameTest extends NsTest {
         assertThat(output()).contains("pobi : ---", "woni : ", "jun : -----");
     }
 
+    @Test
+    @DisplayName("우승자 출력 테스트 - 단독 우승자를 올바르게 출력한다")
+    void printWinner_printsSingleWinner() {
+        // given
+        Game game = new Game();
+        Player pobi = new Player("pobi", 5);
+        Player woni = new Player("woni", 2);
+
+        // when
+        game.printWinner(List.of(pobi, woni));
+
+        // then
+        assertThat(output()).contains("최종 우승자 : pobi");
+    }
+
+    @Test
+    @DisplayName("우승자 출력 테스트 - 공동 우승자를 쉼표로 구분하여 올바르게 출력한다")
+    void printWinner_printsJointWinners() {
+        // given
+        Game game = new Game();
+        Player pobi = new Player("pobi", 5);
+        Player woni = new Player("woni", 2);
+        Player jun = new Player("jun", 5);
+
+        // when
+        game.printWinner(List.of(pobi, woni, jun));
+
+        // then
+        assertThat(output()).contains("최종 우승자 : pobi, jun");
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
