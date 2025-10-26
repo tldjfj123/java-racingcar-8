@@ -1,6 +1,7 @@
 package racingcar;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
@@ -13,6 +14,7 @@ class ApplicationTest extends NsTest {
     private static final int STOP = 3;
 
     @Test
+    @DisplayName("기능 테스트 - 정상적인 이름으로 게임이 정상 진행된다")
     void 기능_테스트() {
         assertRandomNumberInRangeTest(
             () -> {
@@ -24,10 +26,20 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    @DisplayName("예외 테스트 - 이름이 5자를 초과하면 예외가 발생한다")
     void 예외_테스트() {
         assertSimpleTest(() ->
             assertThatThrownBy(() -> runException("pobi,javaji", "1"))
                 .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
+    @DisplayName("예외 테스트 - 이름이 비어있으면 예외가 발생한다")
+    void 예외_테스트_이름_비어있음() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("pobi,,woni", "1"))
+                        .isInstanceOf(IllegalArgumentException.class)
         );
     }
 
