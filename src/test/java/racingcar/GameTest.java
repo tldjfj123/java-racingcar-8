@@ -46,6 +46,22 @@ class GameTest extends NsTest {
         assertThat(player.position).isEqualTo(0);
     }
 
+    @Test
+    @DisplayName("실행 결과 출력 테스트 - position 값에 따라 '-'가 올바르게 출력된다")
+    void printGameResult_printsCorrectly() {
+        // given
+        Game game = new Game();
+        Player pobi = new Player("pobi", 3);
+        Player woni = new Player("woni", 0);
+        Player jun = new Player("jun", 5);
+
+        // when
+        game.printGameResult(List.of(pobi, woni, jun));
+
+        // then
+        assertThat(output()).contains("pobi : ---", "woni : ", "jun : -----");
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
