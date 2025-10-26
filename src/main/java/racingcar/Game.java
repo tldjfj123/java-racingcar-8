@@ -74,6 +74,33 @@ public class Game {
 
     // 승자 출력 메소드
     public void printWinner(List<Player> players) {
-        // 구현 예정
+        int maxPosition = findMaxPosition(players);
+        List<String> winners = findWinners(players, maxPosition);
+
+        String resultMessage = "최종 우승자 : " + String.join(", ", winners);
+
+        System.out.println(resultMessage);
+    }
+
+    private int findMaxPosition(List<Player> players) {
+        int maxPosition = -1;
+
+        for (Player player : players) {
+            maxPosition = Math.max(maxPosition, player.position);
+        }
+
+        return maxPosition;
+    }
+
+    private List<String> findWinners(List<Player> players, int maxPosition) {
+        List<String> winners = new ArrayList<>();
+
+        for (Player player : players) {
+            if (player.position == maxPosition) {
+                winners.add(player.name);
+            }
+        }
+
+        return winners;
     }
 }
