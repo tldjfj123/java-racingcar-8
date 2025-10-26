@@ -1,6 +1,7 @@
 package racingcar;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +53,15 @@ public class Game {
 
     // 게임 실행 메소드
     public void playGame(List<Player> players) {
-        // 구현 예정
+        for (Player player : players) {
+            checkRandomNumber(player);
+        }
+    }
+
+    private void checkRandomNumber(Player player) {
+        if (Randoms.pickNumberInRange(0, 9) >= 4) {
+            player.position++;
+        }
     }
 
     // 현재 상황 출력 메소드
