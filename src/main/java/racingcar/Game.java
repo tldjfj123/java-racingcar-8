@@ -66,7 +66,10 @@ public class Game {
 
     // 현재 상황 출력 메소드
     public void printGameResult(List<Player> players) {
-        // 구현 예정
+        for (Player player : players) {
+            System.out.println(player.name + " : " + "-".repeat(player.position));
+        }
+        System.out.println();
     }
 
     // 승자 출력 메소드
