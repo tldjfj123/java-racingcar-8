@@ -2,7 +2,6 @@ package racingcar;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -39,8 +38,16 @@ public class Game {
 
     // 실행 횟수 등록 메소드
     public int registerNumberOfAttempts() {
-        // 구현 예정
-        return 0;
+        System.out.println("시도할 횟수는 몇 회인가요?");
+        String input = Console.readLine();
+        validateNumberOfAttempts(input);
+        return Integer.parseInt(input);
+    }
+
+    private void validateNumberOfAttempts(String input) {
+        if (!input.matches("^[0-9]+$")) {
+            throw new IllegalArgumentException("시도 횟수는 숫자여야 합니다.");
+        }
     }
 
     // 게임 실행 메소드
